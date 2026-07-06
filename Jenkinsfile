@@ -1,23 +1,22 @@
 pipeline {
-    agent any
-
-    stages {
-        stage('Build') {
-            steps {
-                echo 'Hello from Jenkins!'
-            }
-        }
-
-        stage('Test') {
-            steps {
-                echo 'Testing...'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                echo 'Deploying...'
-            }
+  agent {
+  label 'label-7'
+}
+  stages {
+    stage {'BUILD'} {
+      steps {
+        echo " This is Build Stage "
         }
     }
+    stage {'TEST'} {
+      steps {
+        echo " This is Test Stage "
+        }
+    }
+    stage {'DEPLOY'} {
+      steps {
+        echo " This is Deploy Stage "
+        }
+    }
+}
 }
