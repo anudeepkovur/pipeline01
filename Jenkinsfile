@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label 'slave-7'
+        label 'slave-8'
     }
     //agent any
     //agent none
