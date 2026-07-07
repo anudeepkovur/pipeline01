@@ -5,21 +5,21 @@ pipeline {
       agent any
       steps {
         echo " This is Build stage "
-        sh 'sleep 5'
+        //sh 'sleep 5'
         }
       }
       stage ( 'TEST' ) {
         agent { label 'label-8' }
         steps {
           echo " This is Test stage "
-          sh 'sleep 5'
+          //sh 'sleep 5'
           }
         }
         stage ( 'DEPLOY' ) {
           agent { label 'label-8' }
           steps {
             echo " This is Deploy stage "
-            sh 'sleep 5'
+            //sh 'sleep 5'
             }
           }
         }
