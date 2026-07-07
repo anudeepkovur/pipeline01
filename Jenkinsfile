@@ -1,29 +1,24 @@
 pipeline {
-    agent {
-        label 'slave-8'
-    }
-    //agent any
-    //agent none
+    agent none
     stages {
         stage('BUILD') {
+            agent any
             steps {
-                echo "This is Build Stage"
-                sh 'hostname'
-                echo "Running on ${env.NODE_NAME}"
+                echo "This is Build stage"
                 sh 'sleep 5'
             }
         }
-
         stage('TEST') {
+            agent { label 'label-8' }
             steps {
-                echo "This is Test Stage"
+                echo "This is Test stage"
                 sh 'sleep 5'
             }
         }
-
         stage('DEPLOY') {
+            agent { label 'master' }
             steps {
-                echo "This is Deploy Stage"
+                echo "This is Deploy stage"
                 sh 'sleep 5'
             }
         }
