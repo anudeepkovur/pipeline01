@@ -1,12 +1,16 @@
 pipeline {
     agent none
+    environment {
+        NAME = 'ANU'
+    }
     stages {
         stage('BUILD') {
             agent { label 'master' }
             steps {
-                echo "This is Build stage"
+                echo "$NAME"
                 sh 'echo Building on master'
                 sh 'sleep 5'
+                $NAME
             }
         }
         stage('TEST') {

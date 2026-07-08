@@ -2,24 +2,55 @@ pipeline {
     agent none
     stages {
         stage('BUILD') {
-            agent any
+            agent { label 'master' }
             steps {
                 echo "This is Build stage"
-                // sh 'sleep 5'
+                sh 'echo Building on master'
+                sh 'sleep 5'
             }
         }
         stage('TEST') {
-            agent { label 'label-8' }
+            agent { label 'slave-9' }
             steps {
                 echo "This is Test stage"
-                // sh 'sleep 5'
+                sh 'echo Testing on slave-9'
+                sh 'sleep 5'
             }
         }
         stage('DEPLOY') {
-            agent { label 'master' }
+            agent { label 'slave-10' }
             steps {
                 echo "This is Deploy stage"
-                // sh 'sleep 5'
+                sh 'echo Deploying on slave-10'
+                sh 'sleep 5'
+            }
+        }
+        stage('PARALLEL TESTS') {
+            parallel {
+                stage('DEV') {
+                    agent { label 'slave-9' }
+                    steps {
+                        echo "This is Test in DEV stage"
+                        sh 'echo Testing in dev on slave-9'
+                        sh 'sleep 5'
+                    }
+                }
+                stage('TST') {
+                    agent { label 'slave-9' }
+                    steps {
+                        echo "This is Test in TST stage"
+                        sh 'echo Testing in tst on slave-9'
+                        sh 'sleep 5'
+                    }
+                }
+                stage('PERF') {
+                    agent { label 'slave-9' }
+                    steps {
+                        echo "This is Test in PERF stage"
+                        sh 'echo Testing in perf on slave-9'
+                        sh 'sleep 5'
+                    }
+                }
             }
         }
     }
