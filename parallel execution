@@ -10,7 +10,7 @@ pipeline {
                 echo "This is Build stage"
                 sh 'echo Building on master'
                 sh 'sleep 5'
-                $NAME
+                sh 'echo $NAME'
             }
         }
         stage('TEST') {
