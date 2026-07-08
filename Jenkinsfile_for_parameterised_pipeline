@@ -1,0 +1,19 @@
+pipeline {
+    agent any
+    parameters {
+    string defaultValue: 'TEST', description: 'environment to deploy the application', name: 'ENV', trim: true
+    choice choices: ['main', 'master'], description: 'environment to deploy the application', name: 'BRANCH'
+}
+    stages {
+        stage('BUILD') {
+            agent any
+            steps {
+                echo "This is Build stage"
+                sh 'sleep 5'
+                echo Deploying to $ENV
+                echo Code from  $BRANCH branch
+                exit 0
+            }
+        }
+    }
+}
