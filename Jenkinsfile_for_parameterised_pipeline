@@ -12,7 +12,6 @@ pipeline {
                 sh 'sleep 5'
                 echo "Code from $BRANCH branch"
                 echo "Deploying to ${ENV}"
-                exit 0
             }
         }
     }
